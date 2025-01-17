@@ -187,8 +187,6 @@ Copy-Item $icu_directory/bin/*.dll $installation_directory\bin
 Copy-Item $openssl_directory/bin/*.dll $installation_directory\bin
 Copy-Item $xml_directory/bin/*.dll $installation_directory\bin
 Copy-Item $xslt_directory/bin/libxslt.dll $installation_directory\bin
-Copy-Item $gettext_directory/bin/libiconv-2.dll $installation_directory\bin
-Copy-Item $gettext_directory/bin/libwinpthread-1.dll $installation_directory\bin
 Copy-Item $zlib_directory/bin/*.dll $installation_directory\bin
 Copy-Item $zstd_directory/bin/*.dll $installation_directory\bin
 Copy-Item $lz4_directory/bin/*.dll $installation_directory\bin
@@ -205,7 +203,6 @@ Copy-Item $wxwidgets_directory/lib/vc_x64_dll/wxmsw326u_xrc_vc_x64_custom.dll $i
 Copy-Item $lz4_directory/lib/liblz4.lib $installation_directory\lib
 Copy-Item $openssl_directory/lib/libssl.lib $installation_directory\lib
 Copy-Item $openssl_directory/lib/libcrypto.lib $installation_directory\lib
-Copy-Item $gettext_directory/lib/iconv.lib $installation_directory\lib
 Copy-Item $gettext_directory/lib/libintl.lib $installation_directory\lib
 Copy-Item $xml_directory/lib/libxml2.lib $installation_directory\lib
 Copy-Item $xslt_directory/lib/libxslt.lib $installation_directory\lib
