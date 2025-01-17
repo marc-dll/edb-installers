@@ -1,6 +1,7 @@
 # Powershell script to compile PostgreSQL
 
 param([string]$source_directory,
+    [string]$iconv_directory,
     [string]$xml_directory,
     [string]$xslt_directory,
     [string]$openssl_directory,
@@ -24,6 +25,11 @@ $temporary_data_location = "temp_pgdata"
 # Check for source parameters
 if (-Not $source_directory) {
     Write-Host "Missing source directory parameter"
+    exit 1
+}
+
+if (-Not $iconv_directory) {
+    Write-Host "Missing iconv directory parameter"
     exit 1
 }
 
@@ -138,6 +144,7 @@ $source_directory = ([IO.Path]::GetFullPath($source_directory))
 $openssl_directory = ([IO.Path]::GetFullPath($openssl_directory))
 $xml_directory = ([IO.Path]::GetFullPath($xml_directory))
 $xslt_directory = ([IO.Path]::GetFullPath($xslt_directory))
+$iconv_directory = ([IO.Path]::GetFullPath($iconv_directory))
 $zlib_directory = ([IO.Path]::GetFullPath($zlib_directory))
 $installation_directory = ([IO.Path]::GetFullPath($installation_directory))
 $uuid_directory = ([IO.Path]::GetFullPath($uuid_directory))
@@ -183,6 +190,7 @@ Get-ChildItem -Path "$installation_directory"
 # this file is needed to compile plpgsql_check
 #Copy-Item $source_directory/Release/plpgsql/plpgsql.lib $installation_directory/lib
 Copy-Item $gettext_directory/bin/libintl-8.dll $installation_directory\bin
+Copy-Item $iconv_directory/bin/libiconv-2.dll $installation_directory\bin
 Copy-Item $icu_directory/bin/*.dll $installation_directory\bin
 Copy-Item $openssl_directory/bin/*.dll $installation_directory\bin
 Copy-Item $xml_directory/bin/*.dll $installation_directory\bin
@@ -201,6 +209,7 @@ Copy-Item $wxwidgets_directory/lib/vc_x64_dll/wxmsw326u_xrc_vc_x64_custom.dll $i
 
 # Manually copy some libraries to the installation directory
 Copy-Item $lz4_directory/lib/liblz4.lib $installation_directory\lib
+Copy-Item $iconv_directory/lib/iconv.lib $installation_directory\lib
 Copy-Item $openssl_directory/lib/libssl.lib $installation_directory\lib
 Copy-Item $openssl_directory/lib/libcrypto.lib $installation_directory\lib
 Copy-Item $gettext_directory/lib/libintl.lib $installation_directory\lib
@@ -228,6 +237,7 @@ Copy-Item -Path $icu_directory/include/* -Destination $installation_directory/in
 Copy-Item $uuid_directory/include/*.h $installation_directory/include
 Copy-Item $zlib_directory/include/*.h $installation_directory/include
 Copy-Item $zstd_directory/include/*.h $installation_directory/include
+Copy-Item $iconv_directory/include/*.h $installation_directory/include
 
 
 # Now we need to start a temporary instance, to run the contrib tests
