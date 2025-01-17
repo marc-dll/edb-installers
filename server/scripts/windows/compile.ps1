@@ -209,7 +209,7 @@ Copy-Item $wxwidgets_directory/lib/vc_x64_dll/wxmsw326u_xrc_vc_x64_custom.dll $i
 
 # Manually copy some libraries to the installation directory
 Copy-Item $lz4_directory/lib/liblz4.lib $installation_directory\lib
-Copy-Item $iconv_directory/lib/iconv.lib $installation_directory\lib
+Copy-Item $iconv_directory/lib/libiconv.lib $installation_directory\lib
 Copy-Item $openssl_directory/lib/libssl.lib $installation_directory\lib
 Copy-Item $openssl_directory/lib/libcrypto.lib $installation_directory\lib
 Copy-Item $gettext_directory/lib/libintl.lib $installation_directory\lib
@@ -237,7 +237,7 @@ Copy-Item -Path $icu_directory/include/* -Destination $installation_directory/in
 Copy-Item $uuid_directory/include/*.h $installation_directory/include
 Copy-Item $zlib_directory/include/*.h $installation_directory/include
 Copy-Item $zstd_directory/include/*.h $installation_directory/include
-Copy-Item $iconv_directory/include/*.h $installation_directory/include
+Copy-Item $iconv_directory/include/iconv.h $installation_directory/include
 
 
 # Now we need to start a temporary instance, to run the contrib tests
